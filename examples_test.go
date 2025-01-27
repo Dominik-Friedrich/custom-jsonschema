@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
-
-	"github.com/invopop/jsonschema"
 )
 
 type SampleUser struct {

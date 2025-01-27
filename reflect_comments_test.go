@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/invopop/jsonschema/examples"
+	"github.com/Dominik-Friedrich/custom-jsonschema/examples"
 )
 
 func TestCommentsSchemaGeneration(t *testing.T) {
