@@ -79,6 +79,9 @@ type Schema struct {
 
 	// Special boolean representation of the Schema - section 4.3.2
 	boolean *bool
+
+	// custom schema
+	Uuid string `json:"uuid"`
 }
 
 var (
