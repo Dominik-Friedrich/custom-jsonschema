@@ -758,6 +758,8 @@ func (t *Schema) stringKeywords(tags []string) {
 		if len(nameValue) == 2 {
 			name, val := nameValue[0], nameValue[1]
 			switch name {
+			case "uuid":
+				t.Uuid = val
 			case "minLength":
 				t.MinLength = parseUint(val)
 			case "maxLength":
