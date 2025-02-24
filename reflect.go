@@ -741,7 +741,10 @@ func (t *Schema) booleanKeywords(tags []string) {
 			continue
 		}
 		name, val := nameValue[0], nameValue[1]
-		if name == "default" {
+		switch name {
+		case "uuid":
+			t.Uuid = val
+		case "default":
 			if val == "true" {
 				t.Default = true
 			} else if val == "false" {
@@ -792,6 +795,8 @@ func (t *Schema) numericalKeywords(tags []string) {
 		if len(nameValue) == 2 {
 			name, val := nameValue[0], nameValue[1]
 			switch name {
+			case "uuid":
+				t.Uuid = val
 			case "multipleOf":
 				t.MultipleOf, _ = toJSONNumber(val)
 			case "minimum":
@@ -845,6 +850,8 @@ func (t *Schema) arrayKeywords(tags []string) {
 		if len(nameValue) == 2 {
 			name, val := nameValue[0], nameValue[1]
 			switch name {
+			case "uuid":
+				t.Uuid = val
 			case "minItems":
 				t.MinItems = parseUint(val)
 			case "maxItems":
