@@ -1,6 +1,7 @@
 package jsonschema_test
 
 import (
+	jsonschema "github.com/Dominik-Friedrich/custom-jsonschema"
 	"testing"
 
 	"github.com/stretchr/testify/assert"

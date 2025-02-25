@@ -9,6 +9,7 @@ package jsonschema
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/google/uuid"
 	"net"
 	"net/url"
 	"reflect"
@@ -117,6 +118,9 @@ type Reflector struct {
 
 	// FieldNameTag will change the tag used to get field names. json tags are used by default.
 	FieldNameTag string
+
+	//
+	UuidFunc func(parentUuid uuid.UUID, field reflect.StructField) uuid.UUID
 
 	// IgnoredTypes defines a slice of types that should be ignored in the schema,
 	// switching to just allowing additional properties instead.
@@ -519,6 +523,14 @@ func (r *Reflector) reflectStructFields(st *Schema, definitions Definitions, t r
 			property = r.refOrReflectTypeToSchema(definitions, reflect.TypeOf(alias))
 		} else {
 			property = r.refOrReflectTypeToSchema(definitions, f.Type)
+		}
+
+		if r.UuidFunc != nil {
+			parentUuid, err := uuid.Parse(st.Uuid)
+			if err != nil {
+				parentUuid = uuid.Nil
+			}
+			property.Uuid = r.UuidFunc(parentUuid, f).String()
 		}
 
 		property.structKeywordsFromTags(f, st, name)

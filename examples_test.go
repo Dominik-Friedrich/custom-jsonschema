@@ -3,6 +3,7 @@ package jsonschema_test
 import (
 	"encoding/json"
 	"fmt"
+	jsonschema "github.com/Dominik-Friedrich/custom-jsonschema"
 	"time"
 )
 
